@@ -7,7 +7,7 @@
       />
       <div
         v-if="inbox.channelType === 'Channel::FacebookPage'"
-        class="code-wrapper"
+        class="row settings--content"
       >
         <p class="title">
           {{ $t('INBOX_MGMT.SETTINGS_POPUP.MESSENGER_HEADING') }}
@@ -19,7 +19,7 @@
       </div>
       <div
         v-else-if="inbox.channelType === 'Channel::WebWidget'"
-        class="code-wrapper"
+        class="row settings--content"
       >
         <p class="title">
           {{ $t('INBOX_MGMT.SETTINGS_POPUP.MESSENGER_HEADING') }}
@@ -29,30 +29,34 @@
         </p>
         <woot-code :script="webWidgetScript"></woot-code>
       </div>
-      <div class="agent-wrapper">
-        <p class="title">
-          {{ $t('INBOX_MGMT.SETTINGS_POPUP.INBOX_AGENTS') }}
-        </p>
-        <p class="sub-head">
-          {{ $t('INBOX_MGMT.SETTINGS_POPUP.INBOX_AGENTS_SUB_TEXT') }}
-        </p>
-        <multiselect
-          v-model="selectedAgents"
-          :options="agentList"
-          track-by="id"
-          label="name"
-          :multiple="true"
-          :close-on-select="false"
-          :clear-on-select="false"
-          :hide-selected="true"
-          placeholder="Pick some"
-          @select="$v.selectedAgents.$touch"
-        />
-        <div @click="updateAgents()">
-          <woot-submit-button
-            :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.UPDATE')"
-            :loading="isUpdating"
+      <div class="settings--content row">
+        <div class="small-6">
+          <p class="title">
+            {{ $t('INBOX_MGMT.SETTINGS_POPUP.INBOX_AGENTS') }}
+          </p>
+          <p class="sub-head">
+            {{ $t('INBOX_MGMT.SETTINGS_POPUP.INBOX_AGENTS_SUB_TEXT') }}
+          </p>
+        </div>
+        <div class="small-6">
+          <multiselect
+            v-model="selectedAgents"
+            :options="agentList"
+            track-by="id"
+            label="name"
+            :multiple="true"
+            :close-on-select="false"
+            :clear-on-select="false"
+            :hide-selected="true"
+            placeholder="Pick some"
+            @select="$v.selectedAgents.$touch"
           />
+          <div @click="updateAgents()">
+            <woot-submit-button
+              :button-text="$t('INBOX_MGMT.SETTINGS_POPUP.UPDATE')"
+              :loading="isUpdating"
+            />
+          </div>
         </div>
       </div>
     </div>

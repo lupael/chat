@@ -217,7 +217,7 @@
     }
   }
 
-  .code-wrapper {
+  .settings--content {
     @include margin($space-medium);
 
     .title {
@@ -235,14 +235,6 @@
         background: transparent;
         border: 0;
       }
-    }
-  }
-
-  .agent-wrapper {
-    @include margin($space-medium);
-
-    .title {
-      font-weight: $font-weight-medium;
     }
   }
 }
