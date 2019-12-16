@@ -11,9 +11,9 @@ Rails.application.routes.draw do
 
   match '/status', to: 'home#status', via: [:get]
 
-  resources :widgets, only: [:index]
+  resource :widget, only: [:show]
 
-  namespace :api, :defaults => { :format => 'json' } do
+  namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
       resources :callbacks, only: [] do
         collection do
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       end
 
       namespace :widget do
-        resources :messages, only: [:index, :create]
+        resources :messages, only: [:index, :create, :update]
         resources :inboxes, only: [:create]
       end
 
@@ -76,14 +76,13 @@ Rails.application.routes.draw do
             get :summary
           end
         end
-      
+
         resources :webhooks, only: [] do
           collection do
             post :chargebee
           end
         end
       end
-
     end
   end
 
